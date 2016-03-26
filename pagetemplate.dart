@@ -2,7 +2,7 @@ library pagetemplate;
 
 import 'serverstatus.dart';
 
-String buildPage() {
+buildPage() async {
   ServerStatus status = new ServerStatus();
   String pageTemplate = """
 <!DOCTYPE html>
@@ -81,6 +81,10 @@ String buildPage() {
               <td>isMacOS</td>
               <td>${status.isMacOS}</td>
             </tr>
+            <tr>
+              <td><i>Memory Usage</i></td>
+              <td><pre>${await status.memoryUsage}</pre></td>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -100,6 +104,14 @@ String buildPage() {
             <tr>
               <td><i>Server</i></td>
               <td>${status.time}</td>
+            </tr>
+            <tr>
+              <td><i>Calendar</i></td>
+              <td><pre>${await status.cal}</pre></td>
+            </tr>
+            <tr>
+              <td><i>Uptime</i></td>
+              <td>${await status.uptime}</td>
             </tr>
 
           </tbody>

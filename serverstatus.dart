@@ -28,4 +28,21 @@ class ServerStatus {
     });
     return out;
   }
+
+  get uptime async {
+    return await runCommand("uptime", []);
+  }
+
+  get cal async {
+    return await runCommand("cal", []);
+  }
+
+  get memoryUsage async {
+    return await runCommand("free", ['-o', '-h']);
+  }
+
+  runCommand(String command, List<String> args) async {
+    ProcessResult results = await Process.run(command, args);
+    return results.stdout;
+  }
 }
